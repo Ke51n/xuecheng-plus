@@ -73,3 +73,6 @@ Content-Type: application/json
   "mtName": "前端开发",
   "stName": "HTML/CSS"
 }
+
+### 查询某个课程的课程计划
+GET http://localhost:63040/content/teachplan/40/tree-nodes
