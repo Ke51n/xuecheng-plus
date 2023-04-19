@@ -58,7 +58,8 @@ public class CourseBaseInfoController {
     @ApiOperation("新增课程基础信息")
     @PostMapping("/course")
     public CourseBaseInfoDto createCourseBase(@RequestBody AddCourseDto addCourseDto) {
-//机构id，由于认证系统没有上线暂时硬编码
+        //RequestBody 把请求体的json转为java对象
+        //机构id，由于认证系统没有上线暂时硬编码 todo
         Long companyId = 1232141425L;
         return courseBaseInfoService.createCourseBase(companyId, addCourseDto);
     }

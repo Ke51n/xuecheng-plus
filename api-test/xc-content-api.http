@@ -18,20 +18,20 @@ POST {{content_host}}/content/course
 Content-Type: application/json
 
 {
-  "charge": "201000",
-  "price": 0,
-  "originalPrice":0,
-  "qq": "22333",
-  "wechat": "223344",
-  "phone": "13333333",
-  "validDays": 365,
+  "charge": "201001",
+  "price": 11,
+  "originalPrice":22,
+  "qq": "33",
+  "wechat": "44",
+  "phone": "55",
+  "validDays": 66,
   "mt": "1-1",
   "st": "1-1-1",
-  "name": "测试课程103",
-  "pic": "",
+  "name": "",
+  "pic": "python入门",
   "teachmode": "200002",
-  "users": "初级人员",
+  "users": "python入门python入门python入门",
   "tags": "",
   "grade": "204001",
-  "description": ""
+  "description": "python入门python入门python入门python入门python入门"
 }
