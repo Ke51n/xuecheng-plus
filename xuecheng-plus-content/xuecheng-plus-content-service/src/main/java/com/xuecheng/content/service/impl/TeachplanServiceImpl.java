@@ -7,6 +7,7 @@ import com.xuecheng.content.model.dto.TeachplanDto;
 import com.xuecheng.content.model.po.Teachplan;
 import com.xuecheng.content.service.TeachplanService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,13 +32,24 @@ public class TeachplanServiceImpl implements TeachplanService {
     TeachplanMapper teachplanMapper;
 
     /**
+     * 根据planid找到改条记录
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Teachplan getPlanById(Long id) {
+        return teachplanMapper.getPlanById(id);
+    }
+
+    /**
      * 删除指定章
      *
      * @param id
      * @return
      */
     @Override
-    public int deleteTeachplan(String id) {
+    public int deleteTeachplan(Long id) {
         return teachplanMapper.deleteById(id);
     }
 
@@ -79,6 +91,49 @@ public class TeachplanServiceImpl implements TeachplanService {
             teachplanMapper.insert(teachplanNew);
 
         }
+    }
+
+    /**
+     * 保存teachplan记录，根据Teachplan和表一一对应
+     *
+     * @param teachplan
+     */
+    @Override
+    public void saveTeachplan(Teachplan teachplan) {
+        if (teachplan != null)
+            teachplanMapper.updateById(teachplan);
+    }
+
+    /**
+     * 根据主键id找到对应的courseId
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public int findChildNumById(Long id) {
+        return teachplanMapper.findChildNumById(id);
+    }
+
+    /**
+     * 在teachplan表中找到和当前id同级的所有数据
+     *
+     * @param
+     * @return
+     */
+    @Override
+    public List<Teachplan> findSameLevelPlans(Long courseId, Integer grade, Long parentid) {
+        return teachplanMapper.findSameLevelPlans(courseId, grade, parentid);
+    }
+
+    /**
+     * 根据id找到当前plan的父结点id
+     *
+     * @param id
+     */
+    @Override
+    public long findParentId(Long id) {
+        return teachplanMapper.findParentId(id);
     }
 
     /**
