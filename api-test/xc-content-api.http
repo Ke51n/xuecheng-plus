@@ -20,7 +20,7 @@ Content-Type: application/json
 {
   "charge": "201001",
   "price": 11,
-  "originalPrice":22,
+  "originalPrice": 22,
   "qq": "33",
   "wechat": "44",
   "phone": "55",
@@ -49,13 +49,13 @@ Content-Type: application/json
   "companyId": 1232141425,
   "companyName": "Test1",
   "name": "测试课程0-1",
-  "users": "IT爱好者前端爱好者IT爱好者前端爱好者IT爱好者前端爱好者",
+  "users": "121312121212121212",
   "tags": "课程标签",
   "mt": "1-1",
   "st": "1-1-1",
   "grade": "204001",
   "teachmode": "200002",
-  "description": "这是个测试课程这是个测试课程这是个测试课程",
+  "description": "这是个测试课程这是个测试课程这是个测试课程121",
   "pic": "/mediafiles/2022/09/18/a16da7a132559daf9e1193166b3e7f52.jpg",
   "createDate": "2019-09-04 08:49:26",
   "changeDate": "2022-09-18 15:01:47",
@@ -75,4 +75,54 @@ Content-Type: application/json
 }
 
 ### 查询某个课程的课程计划
-GET http://localhost:63040/content/teachplan/40/tree-nodes
+GET http://localhost:63040/content/teachplan/117/tree-nodes
+
+
+### 新增课程计划--章
+POST {{content_host}}/content/teachplan
+Content-Type: application/json
+
+{
+  "courseId": 74,
+  "parentid": 0,
+  "grade": 1,
+  "pname": "新章74名称 [点击修改1]"
+}
+
+### 新增课程计划--节,从数据库找到第一级的课程计划id向其下边添加计划
+POST {{content_host}}/content/teachplan
+Content-Type: application/json
+
+{
+  "courseId": 74,
+  "parentid": 247,
+  "grade": 2,
+  "pname": "小节名称74 [点击修改1]"
+}
+
+### 课程课程计划,需要从数据库找到修改的课程计划id
+POST {{content_host}}/content/teachplan
+Content-Type: application/json
+
+{
+  "changeDate": null,
+  "courseId": 22,
+  "cousePubId": null,
+  "createDate": null,
+  "ctlBarShow": false,
+  "ctlEditTitle": true,
+  "endTime": null,
+  "grade": "2",
+  "isPreview": "1",
+  "mediaType": "",
+  "orderby": 1,
+  "parentid": 237,
+  "pname": "第1节修改名称2",
+  "startTime": null,
+  "status": null,
+  "teachPlanId": 240
+}
+
+
+### 根据teachplan id 删除章
+DELETE http://localhost:63040/content/teachplan/293

@@ -78,9 +78,10 @@ public class CourseBaseInfoController {
 
     @ApiOperation("修改课程基本信息")
     @PutMapping("/course")
-    public CourseBaseInfoDto modifyCourseBase(@RequestBody @Validated EditCourseDto editCourseDto) {
+    public CourseBaseInfoDto modifyCourseBase(@RequestBody @Validated(ValidationGroups.Update.class) EditCourseDto editCourseDto) {
         //RequestBody 把请求体的json转为java对象
         //机构id，由于认证系统没有上线暂时硬编码 todo
+        //使用Validated 时若指定分组，但DTO类中有的字段没有加分组校验，则该校验失效
         Long companyId = 1232141425L;
         return courseBaseInfoService.updateCourseBase(companyId, editCourseDto);
 

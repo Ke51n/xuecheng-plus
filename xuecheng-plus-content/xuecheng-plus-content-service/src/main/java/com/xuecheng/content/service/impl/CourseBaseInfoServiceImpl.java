@@ -221,6 +221,12 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         return courseBaseInfoDto;
     }
 
+    /**
+     * 更新课程基本和营销信息，然后返回前端最新的课程信息
+     * @param companyId 机构id
+     * @param dto 课程信息
+     * @return
+     */
     @Override
     @Transactional
     public CourseBaseInfoDto updateCourseBase(Long companyId, EditCourseDto dto) {
