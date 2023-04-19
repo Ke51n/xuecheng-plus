@@ -13,7 +13,7 @@ Content-Type: application/json
 ### 课程类别信息
 GET {{content_host}}/content/course-category/tree-nodes/
 
-### 创建课程
+### 新增课程
 POST {{content_host}}/content/course
 Content-Type: application/json
 
@@ -33,5 +33,43 @@ Content-Type: application/json
   "users": "python入门python入门python入门",
   "tags": "",
   "grade": "204001",
-  "description": "python入门python入门python入门python入门python入门"
+  "description": "python入门p"
+}
+
+
+### 根据 id 查询课程基本信息
+GET {{content_host}}/content/course/2
+
+### 根据 id 修改课程基本信息
+PUT {{content_host}}/content/course/
+Content-Type: application/json
+
+{
+  "id": 2,
+  "companyId": 1232141425,
+  "companyName": "Test1",
+  "name": "测试课程0-1",
+  "users": "IT爱好者前端爱好者IT爱好者前端爱好者IT爱好者前端爱好者",
+  "tags": "课程标签",
+  "mt": "1-1",
+  "st": "1-1-1",
+  "grade": "204001",
+  "teachmode": "200002",
+  "description": "这是个测试课程这是个测试课程这是个测试课程",
+  "pic": "/mediafiles/2022/09/18/a16da7a132559daf9e1193166b3e7f52.jpg",
+  "createDate": "2019-09-04 08:49:26",
+  "changeDate": "2022-09-18 15:01:47",
+  "createPeople": null,
+  "changePeople": null,
+  "auditStatus": "202004",
+  "status": "203002",
+  "charge": "201001",
+  "price": 1.0,
+  "originalPrice": 11111.0,
+  "qq": "2222",
+  "wechat": "3333",
+  "phone": "4444",
+  "validDays": 555,
+  "mtName": "前端开发",
+  "stName": "HTML/CSS"
 }
