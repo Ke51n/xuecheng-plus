@@ -1,18 +1,20 @@
-package com.xuecheng.content.mapper;
+package com.xuecheng.content.service;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xuecheng.content.model.po.CourseTeacher;
 
 import java.util.List;
 
 /**
- * <p>
- * 课程-教师关系表 Mapper 接口
- * </p>
+ * package:  com.xuecheng.content.service
+ * project_name:  microServiceProject
+ * 2023/4/20  12:31
+ * description: 教师管理服务
  *
- * @author itcast
+ * @author wk
+ * @version 1.0
  */
-public interface CourseTeacherMapper extends BaseMapper<CourseTeacher> {
+public interface TeacherManageService {
+
 
     /**
      * 根据课程id获取该课程的所有老师信息
@@ -20,7 +22,7 @@ public interface CourseTeacherMapper extends BaseMapper<CourseTeacher> {
      * @param courseId
      * @return
      */
-    List<CourseTeacher> getTeachersByCourseId(int courseId);
+    List<CourseTeacher> getTeachersByCourseId(Integer courseId);
 
     /**
      * 修改老师信息，把请求体中的json转为po类

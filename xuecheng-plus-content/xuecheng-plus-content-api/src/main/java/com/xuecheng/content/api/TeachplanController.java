@@ -90,7 +90,7 @@ public class TeachplanController {
         Integer grade = teachplan.getGrade();
         Long parentid = teachplan.getParentid();
         //2.找到和当前id同级的所有数据
-        List<Teachplan> sameLevelRecords = teachplanService.findSameLevelPlans(courseId,grade,parentid);
+        List<Teachplan> sameLevelRecords = teachplanService.findSameLevelPlans(courseId, grade, parentid);
         //3.若当前plan不在第一个且同级数据多于一个，则和上一个交换orderid，并update到teachplan表
         int preIdx = -1;
         for (int i = 0; i < sameLevelRecords.size(); i++) {
@@ -112,5 +112,45 @@ public class TeachplanController {
         //修改当前记录的orderby并保存
         sameLevelRecords.get(preIdx + 1).setOrderby(preOrderby);
         teachplanService.saveTeachplan(sameLevelRecords.get(preIdx + 1));
+    }
+
+    /**
+     * 下移章/节
+     *
+     * @param id 章/节计划id
+     */
+    @Transactional
+    @ApiOperation("下移章/节")
+    @PostMapping("/teachplan/movedown/{id}")
+    public void movedownplan(@PathVariable Long id) {
+        //思路：首先找到和当前id同级的所有数据,满足对应同一个课程，同一级，父计划id相同
+        //1.找到当前plan
+        Teachplan teachplan = teachplanService.getPlanById(id);
+        Long courseId = teachplan.getCourseId();
+        Integer grade = teachplan.getGrade();
+        Long parentid = teachplan.getParentid();
+        //2.找到和当前id同级的所有数据
+        List<Teachplan> sameLevelRecords = teachplanService.findSameLevelPlans(courseId, grade, parentid);
+        //3.若当前plan不在最后一个且同级数据多于一个，则和下一个交换orderid，并update到teachplan表
+        int nexIdx = -1;
+        for (int i = 0; i < sameLevelRecords.size() - 1; i++) {
+            if (sameLevelRecords.get(i).getId().equals(id)) {
+                //当前记录的位置
+                nexIdx = i + 1;
+                break;
+            }
+        }
+        if (nexIdx == -1) {
+            //当前记录在最下边，无法下移
+            return;
+        }
+        Integer nxtOrderby = sameLevelRecords.get(nexIdx).getOrderby();
+        //把下一条记录的orderby字段设为当前的orderby
+        sameLevelRecords.get(nexIdx).setOrderby(sameLevelRecords.get(nexIdx - 1).getOrderby());
+        //update上一条记录
+        teachplanService.saveTeachplan(sameLevelRecords.get(nexIdx));
+        //修改当前记录的orderby并保存
+        sameLevelRecords.get(nexIdx - 1).setOrderby(nxtOrderby);
+        teachplanService.saveTeachplan(sameLevelRecords.get(nexIdx - 1));
     }
 }

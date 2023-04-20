@@ -114,16 +114,8 @@
         order by orderby;
     </select>
 
-    <!--找到当前plan的父结点id-->
-    <select id="findParentId" resultType="long" parameterType="long">
-        select parentid
-        from teachplan
-        where id = #{value};
-    </select>
-
-
-    <!--根据planid找到改条记录-->
-    <select id="getPlanById" resultType="com.xuecheng.content.model.po.Teachplan" parameterType="long">
+    <!--根据planid找到该条记录-->
+    <select id="getPlanById" resultType="com.xuecheng.content.model.po.Teachplan" parameterType="java.lang.Long">
         select *
         from teachplan
         where id = #{value};

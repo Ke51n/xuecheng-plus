@@ -126,3 +126,6 @@ Content-Type: application/json
 
 ### 根据teachplan id 删除章
 DELETE http://localhost:63040/content/teachplan/293
+
+### 根据课程id查询该课程的所有老师信息
+http://localhost:63040/content/courseTeacher/list/22

@@ -67,11 +67,4 @@ public interface TeachplanService {
      */
     List<Teachplan> findSameLevelPlans(Long courseId, Integer grade, Long parentid);
 
-    /**
-     * 根据id找到当前plan的父结点id
-     *
-     * @param id
-     */
-    long findParentId(Long id);
-
 }

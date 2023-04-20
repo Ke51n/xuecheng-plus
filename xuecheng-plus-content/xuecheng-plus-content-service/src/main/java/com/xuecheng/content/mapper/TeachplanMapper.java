@@ -40,12 +40,6 @@ public interface TeachplanMapper extends BaseMapper<Teachplan> {
      */
     List<Teachplan> findSameLevelPlans(@Param("courseId") long courseId, @Param("grade") int grade, @Param("parentid") long parentid);
 
-    /**
-     * 根据 id 找到当前plan的父结点id
-     *
-     * @param id
-     */
-    long findParentId(Long id);
 
     /**
      * 根据planid找到改条记录
@@ -54,5 +48,6 @@ public interface TeachplanMapper extends BaseMapper<Teachplan> {
      * @return
      */
     Teachplan getPlanById(Long id);
+
 
 }

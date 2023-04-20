@@ -125,17 +125,6 @@ public class TeachplanServiceImpl implements TeachplanService {
     public List<Teachplan> findSameLevelPlans(Long courseId, Integer grade, Long parentid) {
         return teachplanMapper.findSameLevelPlans(courseId, grade, parentid);
     }
-
-    /**
-     * 根据id找到当前plan的父结点id
-     *
-     * @param id
-     */
-    @Override
-    public long findParentId(Long id) {
-        return teachplanMapper.findParentId(id);
-    }
-
     /**
      * 获取最新的排序号,新插入计划时默认排到最后
      * 也就是查询满足条件的记录数
