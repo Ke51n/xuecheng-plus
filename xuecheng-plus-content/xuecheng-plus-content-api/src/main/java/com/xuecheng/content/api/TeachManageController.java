@@ -45,7 +45,8 @@ public class TeachManageController {
 
 
     /**
-     * 修改老师信息，把请求体中的json转为po类
+     * 修改/新增老师信息，把请求体中的json转为po类
+     *
      * @param courseTeacher
      */
     @PostMapping("/courseTeacher")
@@ -53,5 +54,15 @@ public class TeachManageController {
         teacherManageService.updateTeacherInfo(courseTeacher);
     }
 
+    /**
+     * 根据课程id和老师id删除老师信息
+     *
+     * @param courseId
+     * @param teacherId
+     */
+    @DeleteMapping("/courseTeacher/course/{courseId}/{teacherId}")
+    void deleteTeacher(@PathVariable int courseId, @PathVariable int teacherId) {
+        teacherManageService.deleteTeacherInfo(courseId, teacherId);
+    }
 
 }

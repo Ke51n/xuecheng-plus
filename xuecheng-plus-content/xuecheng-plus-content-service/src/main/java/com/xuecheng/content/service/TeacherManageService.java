@@ -29,4 +29,11 @@ public interface TeacherManageService {
      * @param courseTeacher
      */
     void updateTeacherInfo(CourseTeacher courseTeacher);
+
+    /**
+     * 根据课程id和老师id删除老师信息
+     * @param courseId
+     * @param teacherId
+     */
+    void deleteTeacherInfo(int courseId, int teacherId);
 }

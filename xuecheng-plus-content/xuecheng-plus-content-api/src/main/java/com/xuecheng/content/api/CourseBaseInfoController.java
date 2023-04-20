@@ -84,7 +84,13 @@ public class CourseBaseInfoController {
         //使用Validated 时若指定分组，但DTO类中有的字段没有加分组校验，则该校验失效
         Long companyId = 1232141425L;
         return courseBaseInfoService.updateCourseBase(companyId, editCourseDto);
+    }
 
-
+    @ApiOperation("删除一个课程的基本信息")
+    @DeleteMapping("/course/{courseId}")
+    public void delCourseBase(@PathVariable int courseId) {
+        //机构id，由于认证系统没有上线暂时硬编码 todo
+        Long companyId = 1232141425L;
+        courseBaseInfoService.delCourseBase(companyId, courseId);
     }
 }

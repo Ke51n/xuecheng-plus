@@ -1,6 +1,7 @@
 package com.xuecheng.content.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xuecheng.base.exception.XueChengPlusException;
 import com.xuecheng.base.model.PageParams;
@@ -223,8 +224,9 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
 
     /**
      * 更新课程基本和营销信息，然后返回前端最新的课程信息
+     *
      * @param companyId 机构id
-     * @param dto 课程信息
+     * @param dto       课程信息
      * @return
      */
     @Override
@@ -253,6 +255,21 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         //查询课程信息并返回前端
         CourseBaseInfoDto courseBaseInfo = this.getCourseBaseInfo(courseId);
         return courseBaseInfo;
+    }
+
+    /**
+     * @param companyId
+     * @param courseId
+     */
+    @Override
+    @Transactional
+    public void delCourseBase(Long companyId, int courseId) {
+        QueryWrapper<CourseBase> wrapper = new QueryWrapper<>();
+        wrapper.eq("company_id", companyId).eq("id", courseId);
+        int row = courseBaseMapper.delete(wrapper);
+        if (row <= 0) {
+            throw new XueChengPlusException("删除失败，请稍后重试");
+        }
     }
 
 

@@ -27,6 +27,8 @@
         <minio.version>8.4.3</minio.version>
         <xxl-job-core.version>2.3.1</xxl-job-core.version>
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
+        <!--解决swagger报错，Illegal DefaultValue null for parameter type integer-->
+        <swagger-models.version>1.5.20</swagger-models.version>
         <commons-lang3.version>3.10</commons-lang3.version>
         <okhttp.version>4.8.1</okhttp.version>
         <swagger-spring-boot-starter.version>1.9.0.RELEASE</swagger-spring-boot-starter.version>
@@ -79,6 +81,12 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-annotations.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger-models.version}</version>
+            </dependency>
+
             <!-- Servlet 容器管理 -->
             <dependency>
                 <groupId>javax.servlet</groupId>
