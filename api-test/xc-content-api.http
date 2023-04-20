@@ -129,3 +129,12 @@ DELETE http://localhost:63040/content/teachplan/293
 
 ### 根据课程id查询该课程的所有老师信息
 http://localhost:63040/content/courseTeacher/list/22
+
+### 课程查询列表
+POST {{gateway_host}}/content/course/list?pageNo=2&pageSize=1
+Content-Type: application/json
+
+{
+  "auditStatus": "202002",
+  "courseName": ""
+}
