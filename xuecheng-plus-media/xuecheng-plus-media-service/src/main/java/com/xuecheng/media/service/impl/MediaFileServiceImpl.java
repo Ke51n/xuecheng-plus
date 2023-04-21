@@ -103,7 +103,7 @@ public class MediaFileServiceImpl implements MediaFileService {
         String fileMd5 = getFileMd5(new File(localFilePath));
         String objectName = defaultFolderPath + fileMd5 + extension;
         //上传文件到minio
-        boolean result = uploadMediaFilesToMinIO(localFilePath, mimeType, bucket_mediafiles, objectName);
+        boolean result = this.uploadMediaFilesToMinIO(localFilePath, mimeType, bucket_mediafiles, objectName);
         if (!result) {
             XueChengPlusException.cast("上传文件失败");
         }
@@ -221,7 +221,6 @@ public class MediaFileServiceImpl implements MediaFileService {
      * @param bucket        上传到哪个桶
      * @param objectName    上传到哪个路径
      */
-    @Transactional
     public boolean uploadMediaFilesToMinIO(String localFilePath, String mimeType, String bucket, String objectName) {
 
         try {
