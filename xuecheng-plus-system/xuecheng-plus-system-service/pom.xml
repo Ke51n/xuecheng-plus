@@ -54,7 +54,16 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
-
+        <!--使用nacos发现中心，nacos依赖，把服务上报给nacos-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--使用nacos配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
