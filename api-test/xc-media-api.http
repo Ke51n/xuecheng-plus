@@ -8,3 +8,13 @@ Content-Disposition: form-data; name="filedata"; filename="rbrb.jpeg"
 Content-Type: application/octet-stream
 
 < d:/rbrb.jpeg
+
+###
+POST {{media_host}}/upload/checkfile
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; fileMd5="1da733fea486c0ff60ae9c97900719ea"
+
+### 测试媒资检查文件是否存在
+GET {{media_host}}/upload/checkfile/?fileMd5=1da733fea486c0ff60ae9c97900719ea

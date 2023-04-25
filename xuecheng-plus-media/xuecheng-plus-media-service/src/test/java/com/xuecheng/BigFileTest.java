@@ -40,13 +40,13 @@ public class BigFileTest {
     @Test
     public void testChunk() throws IOException {
         File sourceFile = new File("D:\\招标3小组开会.mp4");
-        String chunkPath = "D:develop\\bigfile_test\\chunk\\";
+        String chunkPath = "D:develop\\bigfile_test\\招标3小组开会\\chunk\\";
         File chunkFolder = new File(chunkPath);
         if (!chunkFolder.exists()) {
             chunkFolder.mkdirs();
         }
         //分块大小 1MB-》5MB
-        long chunkSize = 1024 * 5778;
+        long chunkSize = 1024 * 1024 * 5;
         //分块数量
         long chunkNum = (long) Math.ceil(sourceFile.length() * 1.0 / chunkSize);
         System.out.println(String.format("总分块数为%s", chunkNum));
@@ -86,7 +86,7 @@ public class BigFileTest {
      */
     @Test
     public void testChunkMerge() throws IOException {
-        String chunkPath = "D:develop\\bigfile_test\\chunk\\";
+        String chunkPath = "D:develop\\bigfile_test\\招标3小组开会\\chunk\\";
         File chunkFolder = new File(chunkPath);
         int chunkNum = chunkFolder.listFiles().length;
         String newFilePath = "D:develop\\bigfile_test\\bigFiles\\";
@@ -94,7 +94,7 @@ public class BigFileTest {
         if (!filePath.exists()) {
             filePath.mkdirs();
         }
-        RandomAccessFile newFile = new RandomAccessFile(new File(newFilePath + "1.mp4"), "rw");
+        RandomAccessFile newFile = new RandomAccessFile(new File(newFilePath + "招标3小组开会.mp4"), "rw");
         byte[] bytes = new byte[1024];
         for (int i = 0; i < chunkNum; i++) {
             RandomAccessFile curChunk = new RandomAccessFile(new File(chunkPath + i), "r");
@@ -117,11 +117,11 @@ public class BigFileTest {
     @Test
     public void testMerge() throws IOException {
         //块文件目录
-        File chunkFolder = new File("D:develop\\bigfile_test\\chunk\\");
+        File chunkFolder = new File("D:develop\\bigfile_test\\招标3小组开会\\chunk\\");
         //原始文件
         File originalFile = new File("D:\\招标3小组开会.mp4");
         //合并文件
-        File mergeFile = new File("D:\\develop\\bigfile_test\\bigFiles\\2.mp4");
+        File mergeFile = new File("D:\\develop\\bigfile_test\\bigFiles\\招标3小组开会.mp4");
         if (mergeFile.exists()) {
             mergeFile.delete();
         }
@@ -158,7 +158,6 @@ public class BigFileTest {
 
         //校验文件
         try (
-
                 FileInputStream fileInputStream = new FileInputStream(originalFile);
                 FileInputStream mergeFileStream = new FileInputStream(mergeFile);
 
@@ -169,6 +168,7 @@ public class BigFileTest {
             String mergeFileMd5 = DigestUtils.md5Hex(mergeFileStream);
             if (originalMd5.equals(mergeFileMd5)) {
                 System.out.println("合并文件成功");
+                System.out.println(mergeFileMd5);
             } else {
                 System.out.println("合并文件失败");
             }
@@ -214,7 +214,6 @@ public class BigFileTest {
                         .object("chunk/".concat(Integer.toString(i)))
                         .build())
                 .collect(Collectors.toList());
-
         ComposeObjectArgs composeObjectArgs = ComposeObjectArgs.builder()
                 .bucket("testbucket")
                 .object("merge01.mp4")

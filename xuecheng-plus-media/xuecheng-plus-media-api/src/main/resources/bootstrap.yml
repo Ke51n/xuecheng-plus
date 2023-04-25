@@ -2,6 +2,12 @@
 spring:
   application:
     name: media-api
+  servlet:
+    #max-file-size：单个文件的大小限制
+    #Max-request-size: 单次请求的大小限制
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   cloud:
     nacos:
       server-addr: 192.168.101.65:8848

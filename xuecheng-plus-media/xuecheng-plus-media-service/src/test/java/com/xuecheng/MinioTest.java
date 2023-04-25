@@ -117,4 +117,14 @@ public class MinioTest {
         }
     }
 
+    @Test
+    void test() {
+        String s = "2023/04/21/1da733fea486c0ff60ae9c97900719ea.jpg";
+        String[] split = s.split(".");
+        System.out.println(split.length);
+        for (String s1 : split) {
+            System.out.println(s1);
+        }
+    }
+
 }
